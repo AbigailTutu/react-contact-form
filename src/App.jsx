@@ -11,29 +11,40 @@ function App() {
         {
             name: "Enam",
             email: "enam@gmail.com",
-            telephone: "0247765653"
+            telephone: "0247765653",
+            id: "2566778"
         },
 
         {
             name: "Vivian",
             email: "vivian@gmail.com",
-            telephone: "0547765653"
+            telephone: "0547765653",
+            id: "9764789"
         },
 
         {
             name: "Joyce",
             email: "joyce@gmail.com",
-            telephone: "0557765653"
+            telephone: "0557765653",
+            id: "2348976"
         },
 
 ],
 })
 
  const addNewContact = (newContact) => {
+  newContact.id = Math.random().toString()
    setContact({
     persons: [...contact.persons, newContact]
    })
 }
+
+  const deleteContact = (id) => {
+    let deletedContacts = contact.persons.filter(newContact => newContact.id !== id);
+    setContact({
+      persons: deletedContacts
+    })
+  }
   return (
     <>
       <Container fluid>
@@ -42,7 +53,7 @@ function App() {
             <Form addContact={addNewContact}/>
           </Col>
           <Col>
-            <Contacts contactsData = {contact.persons}/>
+            <Contacts contactsData = {contact.persons} deleteContact = {deleteContact}/>
           </Col>
         </Row>
       </Container>

@@ -1,9 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from "react";
-import { Card, Col } from "react-bootstrap";
+import { Card, Col, Button } from "react-bootstrap";
 
 const Contact = (props) => {
+  const handleDelete = (e) => {
+    e.preventDefault()
+    props.deleteContact(props.contactInfo.id)
+  }
   return (
     <Col md="3" style={{marginBottom: "1rem", width: "17rem", marginTop: "2rem"}}>
       <Card>
@@ -16,8 +20,12 @@ const Contact = (props) => {
             <p>Email: {props.contactInfo.email}</p>
             <p>Telephone: {props.contactInfo.telephone}</p>
           </Card.Text>
-          <Card.Link href="#">Edit</Card.Link>
-          <Card.Link href="#">Delete</Card.Link>
+          <Card.Link href="#">
+            <Button variant="primary" size="sm">Edit</Button>
+          </Card.Link>
+          <Card.Link href="#">
+            <Button variant="danger" size="sm" onClick={handleDelete} >Delete</Button>
+          </Card.Link>
         </Card.Body>
       </Card>
     </Col>
