@@ -9,11 +9,16 @@ const Contacts = (props) => {
     <div>
       <Container>
         <Row>
-          {
-            props.contactsData.map((contact) => {
-               return <Contact contactInfo={contact} key={contact.id} deleteContact={props.deleteContact}/>
-            })
-          }
+          {props.contactsData.map((contact) => {
+            return (
+              <Contact
+                contactInfo={contact}
+                key={contact.id}
+                deleteContact={props.deleteContact}
+                editContact={props.editContact}
+              />
+            );
+          })}
         </Row>
       </Container>
     </div>

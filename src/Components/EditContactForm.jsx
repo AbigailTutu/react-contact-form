@@ -1,17 +1,15 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-// 
-
-
 import React, { Component } from 'react'
 
-export class Form extends Component {
+export class EditContactForm extends Component {
   constructor(props){
     super(props);
     this.state = {
-        name:"",
-        email:"",
-        telephone:""
+        name: props.contactInfo.name,
+        email: props.contactInfo.email,
+        telephone: props.contactInfo.telephone,
+        id: props.contactInfo.id
     }
 }
 
@@ -24,17 +22,18 @@ handleChange = (e) => {
 
 handleSubmit = (e) => {
     e.preventDefault()
-    this.props.addContact(this.state)
+    this.props.editContact(this.state.id, this.state)
     this.setState({
         name:"",
         email:"",
         telephone:""
     })
+    this.props.closeModal()
 }
   render() {
     return (
       <div>
-      <form onSubmit={this.handleSubmit} style={{marginTop: "2rem"}}>
+      <form onSubmit={this.handleSubmit}>
       <label>Name</label>
       <br />
       <input type="text" placeholder="Enter Name" name="name" value={this.state.name} onChange={this.handleChange} style={{width: "20rem", height: "2.5rem"}} required/>
@@ -58,27 +57,4 @@ handleSubmit = (e) => {
   }
 }
 
-export default Form
-
-
-
-
-
-
-
-
-
-// <Modal.Dialog>
-//         <Modal.Header closeButton>
-//           <Modal.Title>Modal title</Modal.Title>
-//         </Modal.Header>
-
-//         <Modal.Body>
-//           <p>Modal body text goes here.</p>
-//         </Modal.Body>
-
-//         <Modal.Footer>
-//           <Button variant="secondary">Close</Button>
-//           <Button variant="primary">Save changes</Button>
-//         </Modal.Footer>
-//       </Modal.Dialog>
+export default EditContactForm
